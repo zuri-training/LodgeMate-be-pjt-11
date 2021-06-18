@@ -7,7 +7,7 @@ Backend repo for logic of LodgeMate Web app
 
 1. Fork the repository
 2. Clone and then open it up on your prefered code editor
-3. Open terminal and set upsream branch: `git remote add upstream https://github.com/zuri-training/LodgeMate-fe-pjt-11.git`
+3. Open terminal and set upsream branch: `git remote add upstream https://github.com/zuri-training/LodgeMate-be-pjt-11.git`
 4. Pull upstream `git pull upstream main`
 5. Create a new branch for the task your are doing eg: `git checkout -b landing-page`
 6. After making changes, do `git add .`
