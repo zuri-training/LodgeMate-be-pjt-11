@@ -22,13 +22,15 @@ Route::get('/', function () {
 });
 
 Auth::routes([ 'verify' => true ]);
-//Routes to views
+
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/terms_of_use', function(){
-    return view ('terms_of_use');
-});
-Route::get('/terms_of_use', function(){
-    return view ('terms_of_use');
+
+//Routes to views
+
+Route::get('/terms', function(){
+    return view ('terms');
 });
 Route::get('/privacy', function(){
     return view ('privacy');
@@ -36,11 +38,11 @@ Route::get('/privacy', function(){
 Route::get('/policy', function(){
     return view ('policy');
 });
-Route::get('/contact_us', function(){
-    return view ('contact_us');
+Route::get('/contact', function(){
+    return view ('contact');
 });
-Route::get('/about_us', function(){
-    return view ('about_us');
+Route::get('/about', function(){
+    return view ('about');
 });
 
 Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
