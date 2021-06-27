@@ -23,6 +23,28 @@ Route::get('/', function () {
 
 Auth::routes([ 'verify' => true ]);
 
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Routes to views
+
+Route::get('/terms', function(){
+    return view ('terms');
+});
+Route::get('/privacy', function(){
+    return view ('privacy');
+});
+Route::get('/policy', function(){
+    return view ('policy');
+});
+Route::get('/contact', function(){
+    return view ('contact');
+});
+Route::get('/about', function(){
+    return view ('about');
+});
+
 Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
 
