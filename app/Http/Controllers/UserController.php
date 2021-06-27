@@ -13,7 +13,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //get all users
+        $user = User::paginate(5);
+
+        return view('users.index', [
+            'users' => $user
+        ]);
     }
 
     /**
@@ -23,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        //load the create form in view
+        return View::make('users.create');
     }
 
     /**
@@ -35,6 +41,33 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+        
+                'name' => 'required',
+                'email' => 'required | email',
+                'password' => 'required | confirmed',
+                'phone' => 'required |numeric| max: 14',
+                'address' => 'required',
+                'passport' => 'required',
+                'id_card' => 'required',
+                'role_id' => 'requred',
+
+        ]);
+        User::create([
+            'name' => $request->name,
+            'email'=> $request->email,
+            'password' => Hash::make($request->password),
+            'phone'=> $request->phone,
+            'address'=>$request->address,
+            'passport'=>$request->passport,
+            'id_card'=>$request->id_card,
+            'role_id'=>$request->role_id
+
+        ]);
+
+        
+            return Redirect::to('users');
+        
     }
 
     /**
@@ -45,7 +78,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        // get the user
+        $user= User::find($id);
+
+        // show the view and pass the user to it
+        return View::make('users.show')
+            ->with('users', $user);
     }
 
     /**
@@ -56,7 +95,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+         // get the user
+         $user = User::find($id);
+
+         // show the edit form and pass the user
+         return View::make('users.edit')
+             ->with('users', $user);
     }
 
     /**
@@ -68,7 +113,22 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        // get all the data for our user
+        $user = User::find($id);
+
+        $userData = array_filter($request->all());
+        if (isset($userData['password']))
+            $userData['password'] = Hash::make($request->password);
+           
+
+
+        // update that user
+        $user->fill($userData);
+        $user->save();
+
+        // redirect back to the users list
+        return redirect('users');
     }
 
     /**
@@ -79,6 +139,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+           // delete
+           $users= User:find($id);
+           $users>delete();
+   
+           // redirect
+           return Redirect::to('user');
     }
 }
