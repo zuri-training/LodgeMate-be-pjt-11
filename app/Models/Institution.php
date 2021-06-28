@@ -15,4 +15,5 @@ class Institution extends Model
     {
         return $this->hasMany(Hostel::class);
     }
+    
 }

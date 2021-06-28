@@ -8,6 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Hostel extends Model
 {
     use HasFactory;
+        
+    protected $fillable=
+    [
+          'user_id',
+          'institution_id',
+          'hosteltype_id',
+          'name',
+          'description',
+          'address',
+          'utilities',
+          'price',
+          
+    ];
 
     public function hosteltype()
     {
@@ -22,6 +35,11 @@ class Hostel extends Model
     public function photos()
     {
         return $this->morphMany(Photo::class, 'imageable');
+    }
+
+    public function institutions()
+    {
+        return $this->belongsTo(Institution::class) ;
     }
 
 }

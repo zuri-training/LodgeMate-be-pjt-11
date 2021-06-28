@@ -23,12 +23,7 @@ Route::get('/', function () {
 
 Auth::routes([ 'verify' => true ]);
 
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Routes to views
-
 Route::get('/terms', function(){
     return view ('terms');
 });

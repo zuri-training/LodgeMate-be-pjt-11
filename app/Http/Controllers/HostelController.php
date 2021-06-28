@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hostel;
+use App\Models\Institution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,9 @@ class HostelController extends Controller
      */
     public function index()
     {
-        //
+        
+        $data = hostel::with('institutions')->get();
+        dd($data);
     }
 
     /**
@@ -72,7 +75,7 @@ class HostelController extends Controller
      */
     public function show(Hostel $hostel)
     {
-        //
+        
     }
 
     /**
